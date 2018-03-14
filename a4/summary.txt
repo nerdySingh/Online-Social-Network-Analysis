@@ -1,0 +1,7 @@
+Number of users collected:108 
+Number of messages collected:268
+Average number of users per community:109.0
+Number of instances per class found:81,52
+One example from each class:
+ Negative Tweets:I thought feminism was women be able to choose whether they want to be wives and mothers, not having it forced on t… https://t.co/o92ZFuzldE
+ Positive Tweets:Fascinating #documentary, challenging #stereotypes: How film star #HedyLamarr 's WWII military #invention was torpe… https://t.co/AsDcgsfBih

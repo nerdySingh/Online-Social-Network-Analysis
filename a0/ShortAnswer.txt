@@ -1,0 +1,75 @@
+Enter your responses inline below and push this file to your private GitHub
+repository.
+
+
+1. Assume I plan to use the friend_overlap function above to quantify the
+similarity of two users. E.g., because 344 is larger than 1, I conclude that
+Jill Stein and Gary Johnson are more similar than Hillary Clinton and Donald
+Trump.
+
+How is this approach misleading? How might you fix it?
+
+The above approach only gets the friends that are common to the candidates in the list. This approach is misleading because similarity cannot be calculated only on the basis of common friends ,  we need to consider a lot of factors such as the topics on which the above candiates tweet about for example terrorism, gender equality, religion. Similarity is how the above people write about concerning topics whether they have the same views, the number of retweets they do on similar topics concerning them. We may also consider the replies and the number of people that agree with them on a certain thing. When we compare these results and extract specific keywords from the users tweets we then check similarity using mulit-label classification or clustering techniques.    
+
+
+
+
+
+
+
+
+2. Looking at the output of your followed_by_hillary_and_donald function, why
+do you think this user is followed by both Hilary Clinton and Donald Trump,
+who are rivals? Do some web searches to see if you can find out more
+information.
+
+The reason why they both follow WhiteHouse is that both were the final candidates of the current presidential elections held in he United states and Whitehouse is the place where the president of the United States operates from while it also detrmines the residence of the elected presdient for his/her term. Donald Trump is a republican while hilary clinton as a Democrat and both were nominated from amongst  their respected parties as the final candidates. Hence White House is a common friend of the 2 users as either of the 2 or none could be the final candidate.
+
+
+
+
+
+
+
+
+
+
+
+
+3. There is a big difference in how many accounts each candidate follows (Gary
+Johnson follows over 3K accounts, while Donald Trump follows less than
+50). Why do you think this is? How might that affect our analysis?
+
+Every user follows people or pages that they like or want to promote. If we take Donald Trump's twitter account he follows only 45 people which include his fmaily members, white house and trump campaign members, his buisnesss organizations, media and his friends. So users will follow only those people whom they are really connected with or based on what they like, so goes the case with unfollowing people in the opposite manner. This affects our analysis on the basis that if we consider on number of friends each user has as it can vary from person to person. 
+
+
+
+
+
+
+
+
+4. The follower graph we've collected is incomplete. To expand it, we would
+have to also collect the list of accounts followed by each of the
+friends. That is, for each user X that Donald Trump follows, we would have to
+also collect all the users that X follows. Assuming we again use the API call
+https://dev.twitter.com/rest/reference/get/friends/ids, how many requests will
+we have to make? Given how Twitter does rate limiting
+(https://dev.twitter.com/rest/public/rate-limiting), approximately how many
+minutes will it take to collect this data?
+
+
+we need to understand that twitter uses rate limiting when we use get requests. no to get the requests from friends/ids twitter allows only 15 requests for both user and application in a 15 minute window. 
+Now if we take Donalds trumps friends which is 45 means that 45 requests are sent out to find the friends of friends of donald trump. After every 15 requests twitter doesnt allow you to ping the server for 15 minutes. hence for 45 requests we require to wait for 3 15 minute windows until we we can ping the twitter server again. So approximately we wait 45 minutes to gather all the data only for Donald Trump.
+so basically we have
+N: which is the number of users.
+R : no of requests that can be made by user or application.
+T: which is the wait time to ping the twitter server.
+      Hence (N/R) * T is the wait time for the user.
+      Summation of all the users will give the total wait time for all the users approximately.
+ The total wait time for the above application is 5925 minutes approximately.
+
+
+
+
+

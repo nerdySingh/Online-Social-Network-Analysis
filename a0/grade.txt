@@ -1,0 +1,101 @@
+Grade: 17.00/35.00
+
+3 Deduction(s):
+
+--------------
+#1: 6.00 points
+Failing test: test_add_all_friends: 
+        @points=6
+        
+Traceback (most recent call last):
+  File "../assignments-sol/a0/a0_test.py", line 34, in test_add_all_friends
+    self.assertListEqual(users[0]['friends'][:10], [695023, 1697081, 8381682, 10204352, 11669522, 13075702, 14968475, 14986849, 15166546, 16017475])
+AssertionError: Lists differ: [93069110, 90155533, 216939636, 264501255,[57 chars]6525] != [695023, 1697081, 8381682, 10204352, 11669[49 chars]7475]
+
+First differing element 0:
+93069110
+695023
+
++ [695023,
++  1697081,
++  8381682,
+- [93069110,
+-  90155533,
+-  216939636,
+-  264501255,
+   10204352,
+-  142594034,
+-  140980031,
+-  29118130,
+-  8381682,
+-  634406525]
++  11669522,
++  13075702,
++  14968475,
++  14986849,
++  15166546,
++  16017475]
+
+source:
+    def test_add_all_friends(self):
+         """
+         @points=6
+         """
+         twitter = get_twitter()
+         users = [{'screen_name': 'aronwc'}]
+         add_all_friends(twitter, users)
+         self.assertListEqual(users[0]['friends'][:10], [695023, 1697081, 8381682, 10204352, 11669522, 13075702, 14968475, 14986849, 15166546, 16017475])
+--------------
+
+--------------
+#2: 6.00 points
+Failing test: test_get_friends: 
+        @points=6
+        
+Traceback (most recent call last):
+  File "../assignments-sol/a0/a0_test.py", line 25, in test_get_friends
+    self.assertListEqual(f, [695023, 1697081, 8381682, 10204352, 11669522])
+AssertionError: Lists differ: [93069110, 90155533, 216939636, 264501255, 10204352] != [695023, 1697081, 8381682, 10204352, 11669522]
+
+First differing element 0:
+93069110
+695023
+
+- [93069110, 90155533, 216939636, 264501255, 10204352]
++ [695023, 1697081, 8381682, 10204352, 11669522]
+
+source:
+    def test_get_friends(self):
+         """
+         @points=6
+         """
+         twitter = get_twitter()
+         f = list(get_friends(twitter, 'aronwc')[:5])
+         self.assertListEqual(f, [695023, 1697081, 8381682, 10204352, 11669522])
+--------------
+
+--------------
+#3: 6.00 points
+Failing test: test_friend_overlap: 
+        @points=6
+        
+Traceback (most recent call last):
+  File "../assignments-sol/a0/a0_test.py", line 53, in test_friend_overlap
+    {'screen_name': 'c', 'friends': [1, 2, 3]},
+  File "students/nerdySingh/a0/a0.py", line 274, in friend_overlap
+    names_new[i].append(count_new[i])
+IndexError: list index out of range
+
+source:
+    def test_friend_overlap(self):
+         """
+         @points=6
+         """
+         r = friend_overlap([
+                 {'screen_name': 'a', 'friends': [1, 2, 3]},
+                 {'screen_name': 'b', 'friends': [2, 3, 4]},
+                 {'screen_name': 'c', 'friends': [1, 2, 3]},
+                 ])
+         self.assertListEqual(r, [('a', 'c', 3), ('a', 'b', 2), ('b', 'c', 2)])
+--------------
+

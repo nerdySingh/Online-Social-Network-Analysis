@@ -1,0 +1,42 @@
+We start by running the collect.py file
+
+collect.py -
+     This file takes the twitter api credentials to authenticate the user for collecting the data from twitter. In my project i am collecting the data based on feminism.
+     The script starts with first checking if there is a file named "tweets.txt" in the directory where the corresponding python script is. If not present the code collects tweets based on the query submitted. Twitter's rate limiting api allows only some requests to be submitted in a particular window. In this file the code will collect tweets that are not retweeted and are unique tweets that have not been previously collected.
+     Once the tweets are collected they are dumped to txt file using pickle. From each of the tweets we pick out the screen_names and save it in a file called user_screen_names.txt. 
+     Now all the data is filtered in the corresponding files we now call the twitter api again to collect the friends/id's of the screen_names that have been saved in the file.
+     Note that we call this api after we have collected the unique screen_names of the user from the tweets.txt file.
+     The friends/ids of each screen_name is now collected and added to a dictionary where the "key" is the screen_name and "value" is the list of id's collected.This dictionary is then dumped on to a file called "friends_followers_ids.txt" 
+     We now create a text file called "pos_words.txt" and "neg_words.txt" from AFINN based on the example we had in class for sentiment analysis.
+
+
+cluster.py -
+    
+    Here we load the data from the file "friends_followers_ids.txt". We then store the key, value pair in two lists of user_name and user_id.
+    We call a function called create_graph which makes a graph with edges from screen_name to each id corresponding to that screen_name.
+    After the graph is created we call a function called cluster which in turn calls the partition_girvan_newman fucntion implemented in a1.py with the graph created and max_depth=1.
+    The methods approximate_betweeness and bfs are implemented from the methods implemented in the assignment.
+    After all these methods are called and executed the result is stored in a variable called clusters.
+    The length of the variable determines the number of clusters that are formed and is saved in the file called cluster_length.txt and the order of the cluster is stored in the cluster_order.txt file.
+
+
+classify.py -
+    
+    We use the data file that we used for assignment a2.py for the training_set and the labels for the training data.
+    We make use of pos_words.txt and neg_words.txt file in the global variables of pos_word and _neg_words.
+    Here the process till fit_best_classifier is same as the one we did in assignment a2.py
+    After this a method called get_unique_tweets is called in which we pass the tweets that are collected , the vocab and the best result that has been calculated.
+    Unique_tweets are checked in this method, after which we tokenize the tweets that we have collected and make  X_test a csr_matrix for the tweets as the testing set.
+    Now we call method my_predict where we pass the model we have trained on, the X_test csr_matrix and tweets.
+    Now clf_predcit(X_test) will give us the prediction results and if the result is 0 then tweets[index] make it to the negative tweets esle result is 1 they make it to the positive tweets which are dumped to final_neg_tweets.txt and final_pos_tweets.txt.
+    
+
+summarize.py - 
+    This script loads the followin files:
+            1)tweets.txt
+            2)user_screen_names.txt
+            3)cluster_length.txt
+            4)cluster_order.txt
+            5)final_neg_tweets.txt
+            6)final_pos_tweets.txt
+    and then writes the summary of each file as required.  

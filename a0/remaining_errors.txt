@@ -1,0 +1,76 @@
+test_add_all_friends (__main__.TestA0) ... FAIL
+test_count_friends (__main__.TestA0) ... ok
+test_create_graph (__main__.TestA0) ... ok
+test_followed_by_hillary_and_donald (__main__.TestA0) ... ok
+test_friend_overlap (__main__.TestA0) ... FAIL
+test_get_friends (__main__.TestA0) ... FAIL
+test_get_users (__main__.TestA0) ... ok
+
+======================================================================
+FAIL: test_add_all_friends (__main__.TestA0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "a0_test.py", line 34, in test_add_all_friends
+    self.assertListEqual(users[0]['friends'][:10], [695023, 1697081, 8381682, 10204352, 11669522, 13075702, 14968475, 14986849, 15166546, 16017475])
+AssertionError: Lists differ: [93069110, 90155533, 216939636, 264501255,[57 chars]6525] != [695023, 1697081, 8381682, 10204352, 11669[49 chars]7475]
+
+First differing element 0:
+93069110
+695023
+
++ [695023,
++  1697081,
++  8381682,
+- [93069110,
+-  90155533,
+-  216939636,
+-  264501255,
+   10204352,
+-  142594034,
+-  140980031,
+-  29118130,
+-  8381682,
+-  634406525]
++  11669522,
++  13075702,
++  14968475,
++  14986849,
++  15166546,
++  16017475]
+
+======================================================================
+FAIL: test_friend_overlap (__main__.TestA0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "a0_test.py", line 55, in test_friend_overlap
+    self.assertListEqual(r, [('a', 'c', 3), ('a', 'b', 2), ('b', 'c', 2)])
+AssertionError: Lists differ: [('b', 'c', ['b', 'c', [...]]), ('a', 'c', [[44 chars].]])] != [('a', 'c', 3), ('a', 'b', 2), ('b', 'c', 2)]
+
+First differing element 0:
+('b', 'c', ['b', 'c', [...]])
+('a', 'c', 3)
+
++ [('a', 'c', 3), ('a', 'b', 2), ('b', 'c', 2)]
+- [('b', 'c', ['b', 'c', <Recursion on list with id=4425387848>]),
+-  ('a', 'c', ['a', 'c', <Recursion on list with id=4425386888>]),
+-  ('a', 'b', ['a', 'b', <Recursion on list with id=4425384328>])]
+
+======================================================================
+FAIL: test_get_friends (__main__.TestA0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "a0_test.py", line 25, in test_get_friends
+    self.assertListEqual(f, [695023, 1697081, 8381682, 10204352, 11669522])
+AssertionError: Lists differ: [93069110, 90155533, 216939636, 264501255, 10204352] != [695023, 1697081, 8381682, 10204352, 11669522]
+
+First differing element 0:
+93069110
+695023
+
+- [93069110, 90155533, 216939636, 264501255, 10204352]
++ [695023, 1697081, 8381682, 10204352, 11669522]
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.876s
+
+
